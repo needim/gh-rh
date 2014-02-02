@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Unofficial Release History for Github Repositories</title>
+    <meta name="description" content="an embedable github release history viewer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="assets/css/page.css">
+    <style type="text/css">
+        #gh_release_history {
+            width: 380px;
+            margin: 0 auto;
+        }
+    </style>
+    <script type="text/javascript" src="assets/js/vendor/rainbow-custom.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="share">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-count="none" data-url="http://ned.im/gh-rh/" data-via="needim" data-related="needim" data-hashtags="ghrh">Tweet</a>
+            <script>!function (d, s, id) {
+                    var js, fjs = d.getElementsByTagName(s)[0];
+                    if (!d.getElementById(id)) {
+                        js = d.createElement(s);
+                        js.id = id;
+                        js.src = "//platform.twitter.com/widgets.js";
+                        fjs.parentNode.insertBefore(js, fjs);
+                    }
+                }(document, "script", "twitter-wjs");</script>
+        </div>
+        <span class="light">THE UNOFFICIAL</span>
+        <h1>Release History for Github Repositories</h1>
+        <p>Dynamic release list for your GitHub repository</p>
+
+        <div class="usage">
+            <pre><code data-language="html">
+&#x3C;div id="gh_release_history">&#x3C;/div&#x3E;
+&#x3C;script type="text/javascript"&#x3E;
+    // CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE
+    var ghrh_user = 'needim'; // required: replace with your username
+    var ghrh_repo = 'noty'; // required: replace with your repo name
+
+    // DON'T EDIT BELOW THIS LINE
+    (function() {
+        var ghrh = document.createElement('iframe');
+        ghrh.src = '//ned.im/gh-rh/app.html?user=' + ghrh_user + '&repo=' + ghrh_repo;
+        ghrh.style.border = 0;
+        ghrh.style.width = "100%";
+        document.getElementById('gh_release_history').appendChild(ghrh);
+        ghrh.onload = function(){
+            ghrh.contentWindow.postMessage('getSize', 'http://ned.im/gh-rh')
+        };
+        window.addEventListener('message', function(e) {
+            ghrh.style.height = e.data + 'px'
+        }, false);
+    })();
+&#x3C;/script&#x3E;
+            </code></pre>
+        </div>
+
+        <h2>Example for needim/noty</h2>
+
+        <div id="gh_release_history"></div>
+        <script type="text/javascript">
+            // CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE
+            var ghrh_user = 'needim'; // required: replace with your username
+            var ghrh_repo = 'noty'; // required: replace with your repo name
+
+            // DON'T EDIT BELOW THIS LINE
+            (function() {
+                var ghrh = document.createElement('iframe');
+                ghrh.src = '//ned.im/gh-rh/app.html?user=' + ghrh_user + '&repo=' + ghrh_repo;
+                ghrh.style.border = 0;
+                ghrh.style.width = "100%";
+                document.getElementById('gh_release_history').appendChild(ghrh);
+                ghrh.onload = function(){ghrh.contentWindow.postMessage('getSize', 'http://ned.im/gh-rh')};
+                window.addEventListener('message', function(e) {ghrh.style.height = e.data + 'px'}, false);
+            })();
+        </script>
+    </div>
+
+</body>
+</html>

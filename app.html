@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The Unofficial Github Release History</title>
+    <meta name="description" content="an embedable github release history viewer">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="assets/css/app.css">
+    <script type="text/javascript">
+        var params = function () {
+            var vars = [], hash;
+            var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+            for(var i = 0; i < hashes.length; i++) {
+                hash = hashes[i].split('=');
+                vars.push(hash[0]);
+                vars[hash[0]] = hash[1];
+            }
+            return vars;
+        }();
+
+        window.onload = function() {
+            window.addEventListener('message', function(e) {e.source.postMessage(document.body.scrollHeight, e.origin);}, false);
+        };
+
+        window.ghReleaseHistory = {
+            user : params.user,
+            repo : params.repo,
+            tabs : {
+                releases: true,
+                commits : true,
+                issues  : true
+            },
+            lang : {
+                releases: 'Releases',
+                commits : 'Commits',
+                issues  : 'Issues'
+            },
+            theme: 'light',
+            views: {},
+            router: {}
+        };
+    </script>
+    <script data-main="assets/js/app" src="assets/js/vendor/requirejs/require.js"></script>
+</head>
+<body id="application">
+
+<div class="container">
+    <div class="container-inner">
+        <div class="container-content">
+            <div class="timeline">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script id="releaseTemplate" type="text/template">
+    <h4 class="status"><%= name %></h4>
+    <span class="details"><span class="avatar"><img src="<%= author.avatar_url %>&s=140" width="20" alt="<%= author.login %>"/></span> <a class="user" href="<%= author.html_url %>"><%= author.login %></a> released this <span class="date" title="<%= created_at %>"><%= ago %></span>.</span>
+    <div class="body"><%= body %></div>
+    <div class="ui mini icon buttons">
+        <a href="<%= zipball_url %>" rel="nofollow" class="ui button">
+            <i class="download icon"></i>
+            Download
+        </a>
+    </div>
+</script>
+
+<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+<script>
+    (function (b, o, i, l, e, r) {
+        b.GoogleAnalyticsObject = l;
+        b[l] || (b[l] =
+                function () {
+                    (b[l].q = b[l].q || []).push(arguments)
+                });
+        b[l].l = +new Date;
+        e = o.createElement(i);
+        r = o.getElementsByTagName(i)[0];
+        e.src = '//www.google-analytics.com/analytics.js';
+        r.parentNode.insertBefore(e, r)
+    }(window, document, 'script', 'ga'));
+    ga('create', 'UA-XXXXX-X');
+    ga('send', 'pageview');
+</script>
+</body>
+</html>
