@@ -82,7 +82,11 @@
                 ghrh.style.border = 0;
                 ghrh.style.width = "100%";
                 document.getElementById('gh_release_history').appendChild(ghrh);
-                ghrh.onload = function(){ghrh.contentWindow.postMessage('getSize', 'http://ned.im/gh-rh/app.html')};
+                ghrh.onload = function(){
+                    setTimeout(function() {
+                        ghrh.contentWindow.postMessage('getSize', 'http://ned.im/gh-rh/app.html');
+                    }, 1000);
+                };
                 window.addEventListener('message', function(e) {
                     console.log(e);
                     ghrh.style.height = e.data + 'px';
