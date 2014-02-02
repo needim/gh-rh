@@ -57,7 +57,7 @@
         ghrh.style.width = "100%";
         document.getElementById('gh_release_history').appendChild(ghrh);
         ghrh.onload = function() {
-            ghrh.contentWindow.postMessage('getSize', 'http://ned.im/gh-rh/app.html')
+            ghrh.contentWindow.postMessage('getSize', window.location.origin)
         };
         window.addEventListener('message', function(e) {
             ghrh.style.height = e.data + 'px';
@@ -84,7 +84,7 @@
                 document.getElementById('gh_release_history').appendChild(ghrh);
                 ghrh.onload = function() {
                     setTimeout(function () {
-                        ghrh.contentWindow.postMessage('getSize', 'http://ned.im/gh-rh/app.html');
+                        ghrh.contentWindow.postMessage('getSize', window.location.origin);
                     }, 1000);
                 };
                 window.addEventListener('message', function(e) {
