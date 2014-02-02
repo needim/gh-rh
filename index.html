@@ -50,17 +50,17 @@
     var ghrh_repo = 'noty'; // required: replace with your repo name
 
     // DON'T EDIT BELOW THIS LINE
-    (function() {
+    (function () {
         var ghrh = document.createElement('iframe');
         ghrh.src = '//ned.im/gh-rh/app.html?user=' + ghrh_user + '&repo=' + ghrh_repo;
         ghrh.style.border = 0;
         ghrh.style.width = "100%";
         document.getElementById('gh_release_history').appendChild(ghrh);
-        ghrh.onload = function(){
-            ghrh.contentWindow.postMessage('getSize', 'http://ned.im/gh-rh')
+        ghrh.onload = function() {
+            ghrh.contentWindow.postMessage('getSize', 'http://ned.im/gh-rh/app.html')
         };
         window.addEventListener('message', function(e) {
-            ghrh.style.height = e.data + 'px'
+            ghrh.style.height = e.data + 'px';
         }, false);
     })();
 &#x3C;/script&#x3E;
@@ -76,19 +76,18 @@
             var ghrh_repo = 'noty'; // required: replace with your repo name
 
             // DON'T EDIT BELOW THIS LINE
-            (function() {
+            (function () {
                 var ghrh = document.createElement('iframe');
                 ghrh.src = '//ned.im/gh-rh/app.html?user=' + ghrh_user + '&repo=' + ghrh_repo;
                 ghrh.style.border = 0;
                 ghrh.style.width = "100%";
                 document.getElementById('gh_release_history').appendChild(ghrh);
-                ghrh.onload = function(){
-                    setTimeout(function() {
+                ghrh.onload = function() {
+                    setTimeout(function () {
                         ghrh.contentWindow.postMessage('getSize', 'http://ned.im/gh-rh/app.html');
                     }, 1000);
                 };
                 window.addEventListener('message', function(e) {
-                    console.log(e);
                     ghrh.style.height = e.data + 'px';
                 }, false);
             })();

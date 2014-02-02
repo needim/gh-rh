@@ -28,10 +28,7 @@
         }();
 
         window.onload = function() {
-            window.addEventListener('message', function(e) {
-                console.log(e);
-                e.source.postMessage(document.body.scrollHeight, e.origin);
-            }, false);
+            window.addEventListener('message', function(e) {e.source.postMessage(document.body.scrollHeight, e.origin);}, false);
         };
 
         window.ghReleaseHistory = {
