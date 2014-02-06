@@ -59,7 +59,7 @@
         ghrh.style.width = "100%";
         document.getElementById('gh_release_history').appendChild(ghrh);
         ghrh.onload = function() {
-            ghrh.contentWindow.postMessage('getSize', window.location.origin)
+            ghrh.contentWindow.postMessage('getSize', '*')
         };
         window.addEventListener('message', function(e) {
             ghrh.style.height = e.data + 'px';
@@ -86,7 +86,7 @@
                 document.getElementById('gh_release_history').appendChild(ghrh);
                 ghrh.onload = function() {
                     setTimeout(function () {
-                        ghrh.contentWindow.postMessage('getSize', window.location.origin);
+                        ghrh.contentWindow.postMessage('getSize','*');
                     }, 1000);
                 };
                 window.addEventListener('message', function(e) {
