@@ -28,7 +28,10 @@
         }();
 
         window.onload = function() {
-            window.addEventListener('message', function(e) {e.source.postMessage(document.body.scrollHeight, e.origin);}, false);
+            window.addEventListener('message', function(e) {
+                window.extSource = e.source;
+                e.source.postMessage(document.body.scrollHeight + 40, e.origin);
+            }, false);
         };
 
         window.ghReleaseHistory = {
